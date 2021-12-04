@@ -210,6 +210,7 @@ while ($in_progress -gt 0) {
 
     $page = $ev.SourceEventArgs.Result
     $err = $ev.SourceEventArgs.Error
+    $ev
     if ($json.checkver.script) {
         $page = $json.checkver.script -join "`r`n" | Invoke-Expression
     }
