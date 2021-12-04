@@ -76,11 +76,14 @@ $Dir = Resolve-Path $Dir
 $Search = $App
 $GitHubToken = $env:SCOOP_CHECKVER_TOKEN, (get_config 'checkver-token') | Where-Object -Property Length -Value 0 -GT | Select-Object -First 1
 
+$GitHubToken
+
 # get apps to check
 $Queue = @()
 $json = ''
 Get-ChildItem $Dir "$App.json" | ForEach-Object {
     $json = parse_json "$Dir\$($_.Name)"
+    "Adding $($_.Name) to queue"
     if ($json.checkver) {
         $Queue += , @($_.Name, $json)
     }
@@ -94,6 +97,8 @@ Get-Event | ForEach-Object {
 # start all downloads
 $Queue | ForEach-Object {
     $name, $json = $_
+
+    "Starting with $name"
 
     $substitutions = Get-VersionSubstitution $json.version
 

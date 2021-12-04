@@ -157,6 +157,8 @@ if ($Push) {
     execute 'hub push origin master'
 }
 
+"Calling checkver..."
+
 . "$PSScriptRoot\checkver.ps1" -App $App -Dir $Dir -Update -SkipUpdated:$SkipUpdated
 if ($SpecialSnowflakes) {
     Write-Host "Forcing update on our special snowflakes: $($SpecialSnowflakes -join ',')" -ForegroundColor DarkCyan
