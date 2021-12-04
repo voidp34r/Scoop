@@ -76,6 +76,8 @@ Optional options:
     exit 0
 }
 
+"Entered auto-pr..."
+
 if (is_unix) {
     if (!(which hub)) {
         Write-Host "Please install hub ('brew install hub' or visit: https://hub.github.com/)" -ForegroundColor Yellow
