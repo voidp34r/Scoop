@@ -216,15 +216,15 @@ while ($in_progress -gt 0) {
 
     if ($err) {
         next "$($err.message)`r`nURL $url is not valid"
-        Write-Host "Event object:"
-        $ev
-        ""
-        Write-Host "Event object: SourceEventArgs:"
-        $ev.SourceEventArgs
-        ""
         Write-Host "Event object: SourceEventArgs: Error:"
         $ev.SourceEventArgs.Error
-        ""
+
+        Write-Host "Event object: SourceEventArgs: Error: Response:"
+        $ev.SourceEventArgs.Error.Response
+
+        Write-Host "Event object: SourceEventArgs: Error: Source:"
+        $ev.SourceEventArgs.Error.Source
+
         continue
     }
 
