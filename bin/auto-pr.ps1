@@ -76,8 +76,6 @@ Optional options:
     exit 0
 }
 
-"Entered auto-pr..."
-
 if (is_unix) {
     if (!(which hub)) {
         Write-Host "Please install hub ('brew install hub' or visit: https://hub.github.com/)" -ForegroundColor Yellow
@@ -158,8 +156,6 @@ if ($Push) {
     execute 'hub pull upstream master'
     execute 'hub push origin master'
 }
-
-"Calling checkver..."
 
 . "$PSScriptRoot\checkver.ps1" -App $App -Dir $Dir -Update -SkipUpdated:$SkipUpdated
 if ($SpecialSnowflakes) {
