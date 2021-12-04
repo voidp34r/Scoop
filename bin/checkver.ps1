@@ -167,8 +167,9 @@ $Queue | ForEach-Object {
     if ($url -like '*api.github.com/*') { $useGithubAPI = $true }
 
     if ($useGithubAPI -and ($null -ne $GitHubToken)) {
-        # $url = $url -replace '//(www\.)?github.com/', '//api.github.com/repos/'
+        $url = $url -replace '//(www\.)?github.com/', '//api.github.com/repos/'
         $wc.Headers.Add('Authorization', "token $GitHubToken")
+        $wc.Headers.Add('Accept', 'application/vnd.github.v3+json')
     }
 
     $url = substitute $url $substitutions
