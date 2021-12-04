@@ -210,13 +210,21 @@ while ($in_progress -gt 0) {
 
     $page = $ev.SourceEventArgs.Result
     $err = $ev.SourceEventArgs.Error
-    $ev
     if ($json.checkver.script) {
         $page = $json.checkver.script -join "`r`n" | Invoke-Expression
     }
 
     if ($err) {
         next "$($err.message)`r`nURL $url is not valid"
+        Write-Host "Event object:"
+        $ev
+        ""
+        Write-Host "Event object: SourceEventArgs:"
+        $ev.SourceEventArgs
+        ""
+        Write-Host "Event object: SourceEventArgs: Error:"
+        $ev.SourceEventArgs.Error
+        ""
         continue
     }
 
